@@ -23,6 +23,11 @@ class AddUserSimulation extends Simulation {
       .get("/api/users/2")
       .check(status is 200)
     )
+    .pause(2)
+
+    .exec(http("get all user")
+      .get("/api/users?page=2")
+      .check(status is 200))
   setUp(scn.inject(atOnceUsers(100))).protocols(httpConf)
 
 }
